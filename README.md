@@ -12,12 +12,12 @@ temporarily hosted on
 
 Build
 
-``` cmd
+``` bat 
 docker build -t justilluminate/food-tracker-app .
 ```
 
 Push 
 
-``` cmd
+``` bat 
 docker push justilluminate/food-tracker-app
 ```
