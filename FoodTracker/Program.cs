@@ -9,6 +9,9 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
+// Configure Kestrel to use port 500
+builder.WebHost.UseUrls("http://*:500");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,9 +23,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
-
 app.UseRouting();
 
 app.MapBlazorHub();
