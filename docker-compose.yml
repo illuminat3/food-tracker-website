@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  food-tracker:
+    image: justilluminate/food-tracker-app
+    container_name: food-tracker-container
+    ports:
+      - "500:500"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    volumes:
+      - /database/database.db:/app/database/database.db
