@@ -1,6 +1,6 @@
 # food-tracker-website
 
-##Description
+## Description
 
 tracks food places
 
