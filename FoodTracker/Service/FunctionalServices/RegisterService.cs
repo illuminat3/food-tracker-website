@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using FoodTracker.Data.DTOs;
+using FoodTracker.Data.DTOs.Transfer;
 using FoodTracker.Service.DataServices.Abstraction;
 using FoodTracker.Service.DataServices.DataAccess.Abstraction;
 using FoodTracker.Service.FunctionalServices.Abstraction;
@@ -28,7 +29,7 @@ public class RegisterService : IRegisterService
     public async Task<Response> Register(User user)
     {
         var response = ValidateUser(user);
-        if (!response.isSuccess)
+        if (response.IsSuccess)
         {
             await _userDataAccess.Insert(user);
             await _userService.SetCurrentUser(user);
