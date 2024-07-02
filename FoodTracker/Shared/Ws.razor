@@ -1,0 +1,21 @@
+﻿@using FoodTracker.Data.Enum
+@inherits ComponentBase
+
+@code {
+    [Parameter]
+    public int Size { get; set; }
+
+    [Parameter]
+    public SizeUnits Type { get; set; }
+
+    private string SizeWithUnit => Type switch
+    {
+        SizeUnits.Px => $"{Size}px",
+        SizeUnits.Rem => $"{Size}rem",
+        SizeUnits.Em => $"{Size}em",
+        SizeUnits.Percent => $"{Size}%",
+        _ => $"{Size}px"
+    };
+}
+
+<div style="height:@SizeWithUnit;"></div>

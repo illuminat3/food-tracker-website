@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="Service\DataServices\DataAccess\" />
     <Folder Include="Service\FunctionalServices\" />
   </ItemGroup>
