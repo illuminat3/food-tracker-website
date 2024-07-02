@@ -1,8 +1,8 @@
 ﻿using FoodTracker.Data.DTOs;
+using FoodTracker.Data.DTOs.Transfer;
 using FoodTracker.Service.DataServices.Abstraction;
 using FoodTracker.Service.DataServices.DataAccess.Abstraction;
 using FoodTracker.Service.FunctionalServices.Abstraction;
-using Microsoft.Extensions.Logging;
 
 namespace FoodTracker.Service.FunctionalServices;
 public class LoginService : ILoginService
