@@ -21,3 +21,5 @@ Push
 ``` bat 
 docker push justilluminate/food-tracker-app:latest
 ```
+
+This will also happen when a pr is merged
