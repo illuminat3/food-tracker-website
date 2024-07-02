@@ -16,8 +16,8 @@ builder.Services.AddScoped<IUserDataAccess, UserDataAccess>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IRegisterService, RegisterService>();    
 
-// Configure Kestrel to use port 500
-builder.WebHost.UseUrls("https://*:500");
+// Configure Kestrel to use port 500 - must be http or causes issues
+builder.WebHost.UseUrls("http://*:500");
 
 var app = builder.Build();
 
