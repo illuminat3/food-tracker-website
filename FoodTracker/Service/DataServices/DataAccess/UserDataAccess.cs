@@ -1,42 +1,57 @@
 ﻿using FoodTracker.Data.DTOs;
 using FoodTracker.Service.DataServices.DataAccess.Abstraction;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using FoodTracker.DbContext;
 
-namespace FoodTracker.Service.DataServices.DataAccess;
-
-public class UserDataAccess : IUserDataAccess
+namespace FoodTracker.Service.DataServices.DataAccess
 {
-    public Task<bool> Insert(User user)
+    public class UserDataAccess : IUserDataAccess
     {
-        throw new NotImplementedException();
-    }
+        private readonly FoodTrackerContext _context;
 
-    public Task<bool> Update(User user)
-    {
-        throw new NotImplementedException();
-    }
+        public UserDataAccess(FoodTrackerContext context)
+        {
+            _context = context;
+        }
 
-    public Task<bool> Delete(User user)
-    {
-        throw new NotImplementedException();
-    }
+        public async Task<bool> Insert(User user)
+        {
+            _context.Users.Add(user);
+            return await _context.SaveChangesAsync() > 0;
+        }
 
-    public Task<User> Get(string userId)
-    {
-        throw new NotImplementedException();
-    }
+        public async Task<bool> Update(User user)
+        {
+            _context.Users.Update(user);
+            return await _context.SaveChangesAsync() > 0;
+        }
 
-    public Task<IEnumerable<User>> GetAll()
-    {
-        throw new NotImplementedException();
-    }
+        public async Task<bool> Delete(User user)
+        {
+            _context.Users.Remove(user);
+            return await _context.SaveChangesAsync() > 0;
+        }
 
-    public Task<User> GetByUsername(string username)
-    {
-        throw new NotImplementedException();
-    }
+        public async Task<User?> Get(string userId)
+        {
+            return await _context.Users.FindAsync(userId);
+        }
 
-    public Task<User> GetByEmail(string email)
-    {
-        throw new NotImplementedException();
+        public async Task<IEnumerable<User>> GetAll()
+        {
+            return await _context.Users.ToListAsync();
+        }
+
+        public async Task<User?> GetByUsername(string username)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+        }
+
+        public async Task<User?> GetByEmail(string email)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+        }
     }
 }
