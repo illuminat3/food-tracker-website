@@ -28,9 +28,10 @@ public class RegisterService : IRegisterService
     
     public async Task<Response> Register(User user)
     {
-        var response = ValidateUser(user);
+        var response = await ValidateUser(user);
         if (response.IsSuccess)
         {
+            user.HashedPassword = _hashService.HashString(user.HashedPassword!);
             await _userDataAccess.Insert(user);
             await _userService.SetCurrentUser(user);
         }
@@ -38,7 +39,7 @@ public class RegisterService : IRegisterService
         return response;
     }
 
-    private Response ValidateUser(User user)
+    private async Task<Response> ValidateUser(User user)
     {
         if (!ValidateEmail(user.Email))
         {
@@ -58,7 +59,9 @@ public class RegisterService : IRegisterService
             return new Response(false, "Invalid password.");
         }
         
-        return new Response(true);
+        var response = await CheckForExistingRegistration(user);
+        
+        return response;
     }
     
 
@@ -88,4 +91,29 @@ public class RegisterService : IRegisterService
     {
         return password != null && password.Length <= 20 && !password.Any(char.IsWhiteSpace);
     }
+
+    private async Task<Response> CheckForExistingRegistration(User user)
+    {
+        Response response = new Response(false);
+
+        var tempUser = await _userDataAccess.GetByUsername(user.Username!);
+        if (tempUser != null)
+        {
+            _logger.LogError("Registration attempt failed: Username already exists.");
+            response.Message = "Username already exists.";
+            return response;
+        }
+
+        tempUser = await _userDataAccess.GetByEmail(user.Email!);
+        if (tempUser != null)
+        {
+            _logger.LogError("Registration attempt failed: Email already exists.");
+            response.Message = "Email already exists.";
+            return response;
+        }
+
+        response.IsSuccess = true;
+        return response;
+    }
+
 }
