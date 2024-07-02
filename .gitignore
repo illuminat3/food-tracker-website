@@ -110,3 +110,6 @@ yarn.lock
 
 #Stop accidental uploads of the database
 *.db
+
+#Stop efcore migrations uploads
+Migrations/
