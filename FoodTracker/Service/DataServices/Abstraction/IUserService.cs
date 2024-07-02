@@ -6,5 +6,5 @@ public interface IUserService
 {
     Task<User?> GetCurrentUser();
 
-    Task<bool> SetCurrentUser(User user);
+    Task<bool> SetCurrentUser(User? user);
 }
