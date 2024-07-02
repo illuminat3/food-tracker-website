@@ -107,3 +107,6 @@ yarn.lock
 .idea_tasks/
 .idea/workspace/
 .idea_description.iml
+
+#Stop accidental uploads of the database
+*.db
