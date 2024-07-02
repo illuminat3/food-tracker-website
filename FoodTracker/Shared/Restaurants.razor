@@ -1,0 +1,46 @@
+﻿<h2 align="center">Batley</h2>
+<div class="center-align">
+    @foreach (var restaurant in _batleyRestaurants)
+    {
+        <div>
+            <input type="checkbox" id="@restaurant" name="@restaurant" />
+            <label for="@restaurant">@restaurant</label>
+        </div>
+    }
+</div>
+
+<h2 align="center">Dewsbury</h2>
+<div class="center-align">
+    @foreach (var restaurant in _dewsburyRestaurants)
+    {
+        <div>
+            <input type="checkbox" id="@restaurant" name="@restaurant" />
+            <label for="@restaurant">@restaurant</label>
+        </div>
+    }
+</div>
+
+@code {
+    private readonly List<string> _batleyRestaurants =
+    [
+        "Salt and Crust", "Mother Hubbards", "Frankies Burgers", "Harrys Takeaway",
+        "Mr Peshawar", "Sibu", "Spices and Rices", "Chicken Stop", "Frankos Pizza",
+        "Papi Queso", "BrgrBro", "Sushibox", "Curry Counter", "Kluckaroos",
+        "Pepe’s", "Berlino Doner Kebab", "Chickano’s", "HFC", "Popeyes (once open)",
+        "Chum Chee’s", "Mr T’s"
+    ];
+
+    private readonly List<string> _dewsburyRestaurants = ["Pitstopp"];
+}
+
+<style>
+    .center-align {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .center-align div {
+        margin: 5px 0;
+    }
+</style>
