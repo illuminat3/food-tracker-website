@@ -1,4 +1,5 @@
 ﻿using FoodTracker.Data.DTOs;
+using FoodTracker.Data.DTOs.Transfer;
 
 namespace FoodTracker.Service.FunctionalServices.Abstraction;
 
