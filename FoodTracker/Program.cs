@@ -1,9 +1,11 @@
+using FoodTracker.DbContext;
 using FoodTracker.Service.DataServices;
 using FoodTracker.Service.DataServices.Abstraction;
 using FoodTracker.Service.DataServices.DataAccess;
 using FoodTracker.Service.DataServices.DataAccess.Abstraction;
 using FoodTracker.Service.FunctionalServices;
 using FoodTracker.Service.FunctionalServices.Abstraction;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +13,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
+// Configure EF Core to use SQLite
+builder.Services.AddDbContext<FoodTrackerContext>(options =>
+    options.UseSqlite("Data Source=database/database.db"));
+
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserDataAccess, UserDataAccess>();
 builder.Services.AddScoped<ILoginService, LoginService>();
-builder.Services.AddScoped<IRegisterService, RegisterService>();    
+builder.Services.AddScoped<IRegisterService, RegisterService>();
 
 // Configure Kestrel to use port 500 - must be http or causes issues
 builder.WebHost.UseUrls("http://*:500");
