@@ -4,5 +4,5 @@ namespace FoodTracker.Service.FunctionalServices.Abstraction;
 
 public interface ILoginService
 {
-    Task<User> Login(User user);
+    Task<Response> Login(User user);
 }

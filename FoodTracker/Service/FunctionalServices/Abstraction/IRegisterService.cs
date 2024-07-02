@@ -4,5 +4,5 @@ namespace FoodTracker.Service.FunctionalServices.Abstraction;
 
 public interface IRegisterService
 {
-    Task<bool> Register(User user);
+    Task<Response> Register(User user);
 }
