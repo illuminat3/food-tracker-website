@@ -8,12 +8,12 @@ namespace FoodTracker.Data.DTOs
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         [Required]
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
         [Required]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         [Required]
-        public string HashedPassword { get; set; }
+        public string? HashedPassword { get; set; }
     }
 }

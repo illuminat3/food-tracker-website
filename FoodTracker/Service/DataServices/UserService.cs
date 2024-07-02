@@ -12,7 +12,7 @@ public class UserService : IUserService
         return Task.FromResult(_user);
     }
 
-    public Task<bool> SetCurrentUser(User user)
+    public Task<bool> SetCurrentUser(User? user)
     {
         try
         {
