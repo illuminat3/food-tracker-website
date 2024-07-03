@@ -12,17 +12,17 @@ public partial class Register
     [Inject] private ILogger<Register> _logger { get; set; }
     [Inject] private NavigationManager _navigationManager { get; set; }
 
-    private RegisterModel registerModel = new RegisterModel();
+    private RegisterModel _registerModel = new RegisterModel();
     private Error _error = new Error(false);
 
     private async Task HandleValidSubmit()
     {
         _error.IsActive = false;
 
-        if (string.IsNullOrEmpty(registerModel.Username) || 
-            string.IsNullOrEmpty(registerModel.Password) || 
-            string.IsNullOrEmpty(registerModel.Email) || 
-            string.IsNullOrEmpty(registerModel.ConfirmPassword))
+        if (string.IsNullOrEmpty(_registerModel.Username) || 
+            string.IsNullOrEmpty(_registerModel.Password) || 
+            string.IsNullOrEmpty(_registerModel.Email) || 
+            string.IsNullOrEmpty(_registerModel.ConfirmPassword))
         {
             _error.IsActive = true;
             _error.Message = "All fields must have a value.";
@@ -30,7 +30,7 @@ public partial class Register
         }
         
         
-        if (registerModel.Password != registerModel.ConfirmPassword)
+        if (_registerModel.Password != _registerModel.ConfirmPassword)
         {
             _error = new Error(isActive: true, message: "Passwords do not match.");
             return;
@@ -38,9 +38,9 @@ public partial class Register
 
         User user = new User
         {
-            Username = registerModel.Username,
-            Email = registerModel.Email,
-            HashedPassword = registerModel.Password
+            Username = _registerModel.Username,
+            Email = _registerModel.Email,
+            HashedPassword = _registerModel.Password
         };
 
         var response = await _registerService.Register(user);
