@@ -49,9 +49,9 @@ public partial class Login
             return;
         }
         
-        var password = _hashService.HashString(_loginModel.Password);
+        var hashedPassword = _hashService.HashString(_loginModel.Password);
         
-        if (user.HashedPassword != password)
+        if (user.HashedPassword != hashedPassword)
         {
             _error.IsActive = true;
             _error.Message = "Incorrect password. Please try again.";
