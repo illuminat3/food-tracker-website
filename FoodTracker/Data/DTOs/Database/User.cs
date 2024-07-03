@@ -15,5 +15,10 @@ namespace FoodTracker.Data.DTOs
 
         [Required]
         public string? HashedPassword { get; set; }
+
+        public bool IsMatch(User user)
+        {
+            return user.Id == Id && user.Username == Username && user.Email == Email && user.HashedPassword == HashedPassword;
+        }
     }
 }
