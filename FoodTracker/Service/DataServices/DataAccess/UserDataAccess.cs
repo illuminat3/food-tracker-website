@@ -41,7 +41,7 @@ namespace FoodTracker.Service.DataServices.DataAccess
 
         public async Task<IEnumerable<User>> GetAll()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users.AsNoTracking().ToListAsync();
         }
 
         public async Task<User?> GetByUsername(string username)
