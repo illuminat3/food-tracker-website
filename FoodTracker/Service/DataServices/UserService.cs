@@ -75,6 +75,9 @@ namespace FoodTracker.Service.DataServices
                     var userJson = JsonSerializer.Serialize(user);
                     await _localStorage.SetItemAsStringAsync(UserKey, userJson);
                 }
+                
+                _user = user;
+                
                 return true;
             }
             catch
