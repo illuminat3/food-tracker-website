@@ -16,20 +16,20 @@ jobs:
     - name: Set up .NET SDK
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '7.x'  # Adjust this to the .NET version you are using
+        dotnet-version: '8.x'
 
     - name: Install .NET Entity Framework tools
       run: dotnet tool install --global dotnet-ef
 
     - name: Add .NET tools to PATH
-      run: echo "::add-path::${HOME}/.dotnet/tools"
+      run: echo "${HOME}/.dotnet/tools" >> $GITHUB_PATH
 
     - name: Remove the database file
       run: rm -f database/database.db
 
     - name: Initialize database
       run: |
-        dotnet ef migrations add InitialCreation --context FoodTrackerDbContext
+        dotnet ef migrations add InitialCreate --context FoodTrackerDbContext
         dotnet ef database update --context FoodTrackerDbContext
       working-directory: ./FoodTracker
 
