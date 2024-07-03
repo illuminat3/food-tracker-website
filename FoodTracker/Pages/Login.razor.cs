@@ -11,7 +11,7 @@ namespace FoodTracker.Pages;
 
 public partial class Login
 {
-    [Inject] private NavigationManager _navigationManager {get; set;}
+    [Inject] private NavigationManager NavigationManager { get; set; }
     [Inject] private IUserService _userService { get; set; }
     [Inject] private IRegisterService _registerService { get; set; }
     [Inject] private IUserDataAccess _userDataAccess { get; set; }
