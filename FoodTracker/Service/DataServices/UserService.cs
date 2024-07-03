@@ -30,7 +30,7 @@ namespace FoodTracker.Service.DataServices
                 
                 var userJson = await _localStorage.GetItemAsStringAsync(UserKey);
                 
-                if (string.IsNullOrEmpty(userJson))
+                if (string.IsNullOrWhiteSpace(userJson))
                 {
                     return null;
                 }
