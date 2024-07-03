@@ -1,8 +1,9 @@
 ﻿using FoodTracker.Data.DTOs;
+using FoodTracker.Data.DTOs.Transfer;
 
 namespace FoodTracker.Service.FunctionalServices.Abstraction;
 
 public interface ILoginService
 {
-    Task<User> Login(User user);
+    Task<Response> Login(User user);
 }

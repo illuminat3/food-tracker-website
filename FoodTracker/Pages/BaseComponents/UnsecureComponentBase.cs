@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace FoodTracker.Pages.BaseComponents;
 
-public class SecureComponentBase : ComponentBase
+public class UnsecureComponentBase : ComponentBase
 {
     [Inject]
     protected IUserService UserService { get; set; }
@@ -13,23 +13,19 @@ public class SecureComponentBase : ComponentBase
     protected NavigationManager Navigation { get; set; }
     
     [Inject]
-    protected ILogger<SecureComponentBase> Logger { get; set; }
+    protected ILogger<UnsecureComponentBase> Logger { get; set; }
 
     private User? CurrentUser { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        Logger.LogInformation("OnInitializedAsync called in SecureComponentBase.");
+        Logger.LogInformation("OnInitializedAsync called in UnsecureComponentBase.");
         
         CurrentUser = await UserService.GetCurrentUser();
-        if (CurrentUser == null)
+        if (CurrentUser != null)
         {
-            Logger.LogInformation("CurrentUser is null, navigating to login.");
-            Navigation.NavigateTo("/login");
-        }
-        else
-        {
-            Logger.LogInformation($"CurrentUser: {CurrentUser.Username}");
+            Logger.LogInformation("CurrentUser exists. Stopping them from viewing this page.");
+            Navigation.NavigateTo("/");
         }
     }
 }

@@ -10,11 +10,11 @@ public interface IUserDataAccess
     
     Task<bool> Delete(User user);
     
-    Task<User> Get(string userId);
+    Task<User?> Get(string userId);
     
     Task<IEnumerable<User>> GetAll();
     
-    Task<User> GetByUsername(string username);
+    Task<User?> GetByUsername(string username);
     
-    Task<User> GetByEmail(string email);
+    Task<User?> GetByEmail(string email);
 }
