@@ -56,4 +56,10 @@ public partial class Register
             _error.Message = response.Message;
         }
     }
+
+    private void NavigateToLogin()
+    {
+        _navigationManager.NavigateTo("/login");
+    }
+    
 }
