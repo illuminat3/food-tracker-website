@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using FoodTracker.DbContext;
 using FoodTracker.Service.DataServices;
 using FoodTracker.Service.DataServices.Abstraction;
@@ -11,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddBlazoredLocalStorage();
 
 // Configure EF Core to use SQLite
 builder.Services.AddDbContext<FoodTrackerContext>(options =>
@@ -22,7 +24,6 @@ builder.Services.AddScoped<IUserDataAccess, UserDataAccess>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IRegisterService, RegisterService>();
 builder.Services.AddSingleton<IHashService, HashService>();
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 // Configure logging
 builder.Services.AddLogging(config =>
