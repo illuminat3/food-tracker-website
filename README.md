@@ -17,7 +17,7 @@ To do this use the following commands
 dotnet tool install --global dotnet-ef
 ```
 
-Make sure you are in the FoodTracker directory and run the follwing
+If there are no migrations you will need to run
 
 ``` bat
 dotnet ef migrations add InitialCreate
