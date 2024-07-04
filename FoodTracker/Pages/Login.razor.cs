@@ -23,7 +23,7 @@ public partial class Login
     
     private void NavigateToRegister()
     {
-        _navigationManager.NavigateTo("/register");
+        NavigationManager.NavigateTo("/register");
     }
 
     private async Task HandleValidSubmit()
@@ -59,7 +59,7 @@ public partial class Login
         }
 
         await _userService.SetCurrentUser(user);
-        _navigationManager.NavigateTo("/");
+        NavigationManager.NavigateTo("/");
     }
     
     private async Task<User?> CheckUsername(string username)
