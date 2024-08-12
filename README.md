@@ -8,7 +8,7 @@ temporarily hosted on
 
 [testing.illuminat3-projects.com](https://testing.illuminat3-projects.com/)
 
-[Figma](https://www.figma.com/files/team/1404817639660731896/all-projects?fuid=1296116614538604307)
+[Figma](https://www.figma.com/design/a3hzwtwUk5RaBwgxa2acdW/FoodTracker)
 
 ## Setup
 
